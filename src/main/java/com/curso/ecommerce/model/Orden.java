@@ -26,6 +26,7 @@ public class Orden {
     }
 
     public Orden(Integer id, Date fechaCreacion, Date fechaRecibida, double total) {
+        super();
         this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.fechaRecibida = fechaRecibida;

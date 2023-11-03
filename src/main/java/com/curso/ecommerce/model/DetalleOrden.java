@@ -23,6 +23,7 @@ public class DetalleOrden {
     }
 
     public DetalleOrden(Integer id, double nombre, double cantidad, double precio, double total) {
+        super();
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;

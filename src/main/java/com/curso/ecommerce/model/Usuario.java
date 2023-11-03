@@ -28,6 +28,7 @@ public class Usuario {
     }
 
     public Usuario(Integer id, String nombre, String username, String email, String direccion, String telefono, String tipo, String password) {
+        super();
         this.id = id;
         this.nombre = nombre;
         this.username = username;

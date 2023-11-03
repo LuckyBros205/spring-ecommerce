@@ -21,6 +21,7 @@ public class Producto {
     }
 
     public Producto(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad, Usuario usuario) {
+        super();
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
