@@ -44,5 +44,8 @@ public class HomeController {
         return "usuario/productohome";
     }
 
-
+    @PostMapping("/cart")
+    public String addCart(){
+        return "usuario/carrito";
+    }
 }
