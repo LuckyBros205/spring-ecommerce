@@ -45,7 +45,15 @@ public class HomeController {
     }
 
     @PostMapping("/cart")
-    public String addCart(){
+    public String addCart(@RequestParam Integer id, @RequestParam Integer cantidad){
+        DetalleOrden detalleOrden = new DetalleOrden();
+        Producto producto = new Producto();
+        double sumaTotal = 0;
+
+        Optional<Producto> optionalProducto = productoService.get(id);
+        log.info("Producto añadido: {}", optionalProducto.get());
+        log.info("Cantidad: {}", cantidad);
+
         return "usuario/carrito";
     }
 }
