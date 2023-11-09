@@ -7,6 +7,7 @@ import com.curso.ecommerce.service.ProductoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +61,7 @@ public class HomeController {
 
         detalles.add(detalleOrden);
 
+        //realizamos la suma de precios
         sumaTotal = detalles.stream().mapToDouble(dt->dt.getTotal()).sum();
 
         orden.setTotal(sumaTotal);
@@ -69,6 +71,32 @@ public class HomeController {
 
         log.info("Producto añadido: {}", optionalProducto.get());
         log.info("Cantidad: {}", cantidad);
+
+        return "usuario/carrito";
+    }
+
+    //quitar un producto del carrito
+    @GetMapping("/delete/cart/{id}")
+    public String deleteProductoCart(@PathVariable Integer id, Model model){
+        //lista nueva de productos
+        List<DetalleOrden> ordenesNueva = new ArrayList<DetalleOrden>();
+        double sumaTotal = 0;
+
+        for (DetalleOrden detalleOrden: detalles){
+            if (detalleOrden.getProducto().getId() != id){
+                ordenesNueva.add(detalleOrden);
+            }
+        }
+
+        //poner la nueva lista con los productos restantes
+        detalles = ordenesNueva;
+
+        //realizamos la suma de precios
+        sumaTotal = detalles.stream().mapToDouble(dt->dt.getTotal()).sum();
+
+        orden.setTotal(sumaTotal);
+        model.addAttribute("cart", detalles);
+        model.addAttribute("orden", orden);
 
         return "usuario/carrito";
     }
