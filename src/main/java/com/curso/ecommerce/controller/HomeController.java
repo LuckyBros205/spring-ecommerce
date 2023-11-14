@@ -5,11 +5,10 @@ import com.curso.ecommerce.model.Orden;
 import com.curso.ecommerce.model.Producto;
 import com.curso.ecommerce.model.Usuario;
 import com.curso.ecommerce.service.IUsuarioService;
-import com.curso.ecommerce.service.ProductoService;
+import com.curso.ecommerce.service.IProductoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,7 @@ import java.util.Optional;
 public class HomeController {
     private final Logger log = LoggerFactory.getLogger(HomeController.class);
     @Autowired
-    private ProductoService productoService;
+    private IProductoService productoService;
     @Autowired
     private IUsuarioService usuarioService;
 
