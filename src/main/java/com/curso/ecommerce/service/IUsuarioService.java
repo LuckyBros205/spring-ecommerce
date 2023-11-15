@@ -8,4 +8,5 @@ import java.util.Optional;
 @Repository
 public interface IUsuarioService {
     Optional<Usuario> findById(Integer id);
+    Usuario save(Usuario usuario);
 }
