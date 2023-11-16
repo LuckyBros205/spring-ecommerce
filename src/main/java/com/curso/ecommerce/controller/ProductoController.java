@@ -3,7 +3,10 @@ package com.curso.ecommerce.controller;
 import com.curso.ecommerce.model.Producto;
 import com.curso.ecommerce.model.Usuario;
 import com.curso.ecommerce.service.IProductoService;
+import com.curso.ecommerce.service.IUsuarioService;
 import com.curso.ecommerce.service.UploadFileService;
+import com.curso.ecommerce.service.UsuarioServiceImpl;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,9 @@ public class ProductoController {
     private IProductoService productoService;
 
     @Autowired
+    private IUsuarioService usuarioService;
+
+    @Autowired
     private UploadFileService upload;
 
     @GetMapping("")
@@ -38,10 +44,10 @@ public class ProductoController {
     }
 
     @PostMapping("/save")
-    public String save(Producto producto, @RequestParam("img") MultipartFile file) throws IOException {
+    public String save(Producto producto, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
         LOGGER.info("Este es el objeto producto {}",producto);
 
-        Usuario u = new Usuario(1, "", "", "", "", "", "", "");
+        Usuario u = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
         producto.setUsuario(u);
 
         //imagen
